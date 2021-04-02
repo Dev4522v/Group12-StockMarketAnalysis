@@ -17,8 +17,12 @@
     <div>
         <br>
         <button onclick="submit()">Submit</button>
+        <button onclick="chart(7)">7 days</button>
+        <button onclick="chart(14)">14 days</button>
+        <button onclick="chart(28)">1 month</button>
     </div>
     
+    <canvas id="chart" width="600" height="400"></canvas>
     
 </div>
 
@@ -26,7 +30,57 @@
 {% endblock %}
 
 {% block script %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 <script>
+    var myChart;
+    var material;
+    function getData(data){
+
+        const xs = [];
+        const ys = [];
+        
+        const table=data.split('\n').slice(1);
+        table.forEach(row => {
+            const column = row.split(',');
+            const date = column[0];
+            xs.push(date);
+            const close = column[4];
+            ys.push(close);
+        });
+    return { xs , ys };
+    }
+
+    function chartIt(data){
+        material = getData(data);
+        const ctx = document.getElementById('chart');
+        
+        let chartData = {
+            type: 'line',
+            data: {
+                labels: material.xs,
+                datasets: [{
+                    label: 'Closing Rates',
+                    data: material.ys,
+                    fill: false,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: false,
+                maintainAspectRatio: false
+            }
+        };
+
+        if (typeof(this.myChart) != "undefined") {
+            this.myChart.destroy();
+        }
+
+        this.myChart = new Chart(ctx, chartData);
+        this.myChart.update();
+    }
+    
     function submit(){
         var name = document.getElementById("name");
         var entry = {
@@ -47,11 +101,53 @@
                 console.log(`error!`);
                 return;
             }
-            response.json().then(function(data){
-                console.log(data)
+            response.text().then(function(data){
+                const store=data;
+                console.log(store);
+                chartIt(data);            
             })
 
         })
+    }
+
+    function chart(span){
+        
+        const s=[];
+        const t=[];
+
+        for(i=material.xs.length-span-1; t.length<=span; i++){
+            s.push(material.xs[i]);
+            t.push(material.ys[i]);
+        }
+
+        const ctx = document.getElementById('chart');
+        ctx.width = 300;
+        ctx.height = 100;
+        let chartData = {
+            type: 'line',
+            data: {
+                labels: s,
+                datasets: [{
+                    label: 'Closing Rates',
+                    data: t,
+                    fill: false,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: false,
+                maintainAspectRatio: false
+            }
+        };
+
+        if (typeof(this.myChart) != "undefined") {
+            this.myChart.destroy();
+        }
+
+        this.myChart = new Chart(ctx, chartData);
+        this.myChart.update();
     }
     
 
