@@ -1,4 +1,6 @@
-#importing useful modules
+from flask import Flask, render_template, url_for, redirect, make_response, jsonify
+from datetime import datetime
+from flask import request
 import numpy as np 
 import matplotlib.pyplot as plt 
 import pandas as pd 
@@ -6,52 +8,64 @@ from pandas_datareader import data
 from pandas_datareader._utils import RemoteDataError 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+import csv
 from sklearn.preprocessing import MinMaxScaler
 from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import LSTM
 
 
+#end_time is current time fetched from the local machine
+end_date=datetime.now()
+#start_date is the date before 1 years
+start_date=end_date-relativedelta(years=1)
+#formatting dates in suitable forms
+end_date=str(end_date.strftime('%Y-%m-%d'))
+start_date=str(start_date.strftime('%Y-%m-%d'))
+# print(end_date)
+# print(start_date)
+company_name='^NSEI'
+stock_data=data.DataReader(company_name,'yahoo',start_date,end_date)
+json = stock_data.to_json()
+print(type(json))
 
-#Function name:fetch_the_data
-    ##Description: Fetch the stock related data from yahoo finance API.
-#Input parameters: company_ticker
-    ##Description: company_ticker is a string which has the ticker name of company according to yahoo-finance
-#Output parameters: NULL
-def fetch_the_data(company_ticker):
-    #end_time is current time fetched from the local machine
-    end_date=datetime.now()
-    #start_date is the date before 1 year
-    start_date=end_date-relativedelta(years=1)
-    #formatting dates in suitable form
-    #both start_date and end_date are string of dates in (yyyy-mm-dd) format
-    end_date=str(end_date.strftime('%Y-%m-%d'))
-    start_date=str(start_date.strftime('%Y-%m-%d'))
-    #stock_dataframe is in the format of pandas dataframe fetched from yahoo API
-    stock_price_dataframe=data.DataReader(company_ticker,'yahoo',start_date,end_date)
-    #To see the headings of dataframe, uncomment below lines
-    ##for col in stock_price_dataframe.columns: 
-        ##print(col)
-    
-
-    #close price dataframe has only two coloumns DATE and corresponding CLOSE price of the stock
-    close_price_dataframe=stock_price_dataframe['Close']
-    close_price_dataframe=pd.DataFrame(close_price_dataframe,columns=['Close'])
-
-    #Cleaning the data by filling up the average value on holidays and NAN
-    close_price_dataframe_clean=close_price_dataframe.reindex(pd.date_range(start_date,end_date))
-    close_price_dataframe_clean=close_price_dataframe_clean.fillna(method='ffill')
-    close_price_dataframe_clean=close_price_dataframe_clean.fillna(method='bfill')
+app = Flask(__name__)
 
 
-    #To see the final dataframe uncomment the below lines
-    ##print(close_price_dataframe_clean.shape)
+@app.route('/', methods = ['POST','GET'])
+def index():
+        return render_template('index.html')
 
-    #convert the final dataframe into close_price_csv file
-    close_price_dataframe_clean.to_csv('close_price_csv.csv')
+@app.route('/findCompany', methods = ['POST'])
+def data2():
+        req = request.get_json()
+        print(req)
+        end_date=datetime.now()
+        #start_date is the date before 1 years
+        start_date=end_date-relativedelta(years=1)
+        #formatting dates in suitable forms
+        end_date=str(end_date.strftime('%Y-%m-%d'))
+        start_date=str(start_date.strftime('%Y-%m-%d'))
+        # print(end_date)
+        # print(start_date)
+        company_name=req['name']
+        stock_price_dataframe=data.DataReader(company_name,'yahoo',start_date,end_date)
+        # close_price_dataframe=stock_price_dataframe['Close']
+        # close_price_dataframe=pd.DataFrame(close_price_dataframe,columns=['Close'])
+
+        #Cleaning the data by filling up the average value on holidays and NAN
+        stock_price_dataframe_clean=stock_price_dataframe.reindex(pd.date_range(start_date,end_date))
+        stock_price_dataframe_clean=stock_price_dataframe_clean.fillna(method='ffill')
+        stock_price_dataframe_clean=stock_price_dataframe_clean.fillna(method='bfill')
 
 
+        #To see the final dataframe uncomment the below lines
+        ##print(close_price_dataframe_clean.shape)
 
+        #convert the final dataframe into close_price_csv file
+        csved = stock_price_dataframe_clean.to_csv()
+        res = make_response(csved, 200)
+        return res
 
 #Function name: lstm
     ##Description: Fetch the data from csv file or yahoo API and then split the given data into train and test sets and then apply LSTM.
@@ -133,20 +147,8 @@ def lstm(company_ticker,fraction_of_train=0.6,number_of_features=50,number_of_da
     
     return data, test_predict, y_future, train_length 
 
-# #defining the parameters
-# fraction_of_train=0.6
-# number_of_features=50
-# number_of_days=30
 
-# #calling the function
-# actual_data, validation_data, future_data, offset=lstm('^NSEI',fraction_of_train,number_of_features,number_of_days)
-# offset=offset+number_of_features
 
-# #ploting the data
-# plt.plot(actual_data,label='Actual')
-# plt.plot(np.arange(offset,366),validation_data,label='Prediction')
-# plt.plot(np.arange(366,366+number_of_days),future_data,label='Future')
-# plt.xlabel('Date')
-# plt.ylabel('Close Price')
-# plt.legend()
-# plt.show()
+
+if __name__ == "__main__":
+    app.run(debug = True)
