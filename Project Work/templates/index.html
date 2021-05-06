@@ -41,21 +41,10 @@
 <div class="wrapper">
   <div class="main-header" data-background-color="purple">
     <!-- Logo Header -->
+      
     <div class="logo-header">
-      <a href="index.html" class="logo">
-        <p
-          style="
-            color: rgb(255, 255, 255);
-            font-size: 22px;
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-              'Lucida Sans', Arial, sans-serif;
-            text-align: center;
-          "
-        >
-          Stock Prediction
-        </p>
-      </a>
-      <button
+
+      <!-- <button
         class="navbar-toggler sidenav-toggler ml-auto"
         type="button"
         data-toggle="collapse"
@@ -74,7 +63,23 @@
         <button class="btn btn-minimize btn-rounded">
           <i class="fa fa-bars"></i>
         </button>
-      </div>
+      </div> -->
+      
+      <a href="index.html" class="logo">
+        <p
+          style="
+            color: rgb(255, 255, 255);
+            font-size: 22px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+              'Lucida Sans', Arial, sans-serif;
+            text-align: center;
+            margin: 0; position: relative; top: 14%; left:6%;
+          "
+        >
+          Stock Prediction
+        </p>
+      </a>
+      
     </div>
     <!-- End Logo Header -->
 
@@ -151,11 +156,12 @@
             autocomplete="off"
           >
             <div class="input-group">
-              <div class="input-group-prepend">
+              <!-- <div class="input-group-prepend">
                 <button type="submit" class="btn btn-search pr-1">
                   <i class="fa fa-search search-icon"></i>
                 </button>
-              </div>
+              </div> -->
+              
               <div class="autocomplete">
                 <input
                   id="name"
@@ -310,6 +316,11 @@
           autocomplete(document.getElementById("name"), companies);
         </script>
         <!--Shreeya modified-->
+
+        <div>
+          <button id="submit-bt" style="cursor: pointer; height: 30px; background: rgb(230, 230, 230); border-width: 0px; border-radius: 3px; color: #5a55a1; text-align: center; font-size: px; font-weight:600;" onclick="submit()">Submit</button>
+        </div>
+
         <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
           <li class="nav-item toggle-nav-search hidden-caret">
             <a
@@ -325,6 +336,7 @@
           </li>
         </ul>
       </div>
+      
     </nav>
     <!-- End Navbar -->
   </div>
@@ -365,24 +377,125 @@
   <!-- End Sidebar -->
   <div class="main-panel">
     <div class="content">
-      <h1>Task Master</h1>
-      <h1>
-        Hello World!
-      </h1>
+      <div class = "page-inner">
+      
+      <div class="row">
+        <div class="col-md-9">
+          <div class="card">
+              <div class="card-header">
+                  <div class="card-head-row">
 
-      <form>
-        <label>Name</label>
-        <input type="text" id="name" placeholder="Enter company name" />
-      </form>
-      <div>
-        <br />
-        <button onclick="submit()">Submit</button>
-        <button onclick="chart(7)">7 days</button>
-        <button onclick="chart(14)">14 days</button>
-        <button onclick="chart(28)">1 month</button>
+                      <div class="card-title" style="white-space:nowrap">Stock Statistics</div>
+                      <div class="container">
+                      
+                        <div class="card-tools" onclick="completeChart()">
+                          <a href="#" class="btn btn-info btn-border btn-round btn-sm">
+                              <span class="btn-label">
+    
+                              </span> 1 Year
+                          </a>
+                        </div>
+
+                        <div class="card-tools" onclick="chart(28*6)">
+                          <a href="#" class="btn btn-info btn-border btn-round btn-sm">
+                             <span class="btn-label">
+  
+                             </span> 6 Months
+                          </a>
+                        </div>
+
+                        <div class="card-tools" onclick="chart(28)">
+                          <a href="#" class="btn btn-info btn-border btn-round btn-sm">
+                            <span class="btn-label">
+
+                            </span> 1 Month
+                          </a>
+                        </div>
+
+                        <div class="card-tools" onclick="chart(14)">
+                          <a href="#" class="btn btn-info btn-border btn-round btn-sm">
+                            <span class="btn-label">
+
+                            </span> 14 Days
+                          </a>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+                  <div class="card-body">
+                    <div class="chart-container" style="min-height: 375px">
+                      <img src="static\WhatsApp Image 2021-05-06 at 7.52.05 PM.jpeg" width="640" height="480" id="gonna-hide" alt="First search a stock" style="margin: 0; position: absolute; top: 45%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%);">
+                      <h3 id="gonna-hide" style="opacity: 0.6; visibility: hidden; margin: 0; position: absolute; top: 55%; left: 50%; margin-right: -50%; transform: translate(-55%, -50%);">First search a stock</h3>
+                      <canvas id="chart" height="500" width="900" style="width:100%;height:100%;"></canvas>
+                    </div>
+                    <div id="myChartLegend"></div>
+                  </div>
+          </div>
+        </div>
+        
+        <div class="col-sm-6 col-md-3">
+          <div class="card card-stats card-round">
+              <div class="card-body">
+                  <div class="row align-items-center">
+                      <div class="col-icon">
+                          <div class="icon-big text-center icon-success bubble-shadow-small">
+                              <i class="far fa-newspaper"></i>
+                          </div>
+                      </div>
+                      <div class="col col-stats ml-3 ml-sm-0">
+                          <div class="numbers">
+                              <p class="card-category" style="font-size: 14px;">24-Hour High</p>
+                              <h4 class="card-title">
+                                <div id="high">
+                                  <p>_____</p>
+                                </div>
+                                  <!-- <div class="arrow-up"></div> -->
+                              </h4>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="card card-stats card-round">
+              <div class="card-body">
+                  <div class="row align-items-center">
+                      <div class="col-icon">
+                          <div class="icon-big text-center icon-primary bubble-shadow-small">
+                              <i class="far fa-chart-bar"></i>
+                          </div>
+                      </div>
+                      <div class="col col-stats ml-3 ml-sm-0">
+                          <div class="numbers">
+                              <p class="card-category" style="font-size: 14px;">24-Hour Low</p>
+                              <h4 class="card-title">
+                                <div id="low">
+                                  <p>_____</p>
+                                </div>
+                                  <!-- <div class="arrow-down"></div> -->
+                              </h4>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="card card-stats card-round">
+              <div class="card-body">
+                  <div class="row align-items-center">
+                      <div class="col-icon">
+                          <div class="icon-big text-center icon-secondary bubble-shadow-small">
+                              <i class="far fa-check-circle"></i>
+                          </div>
+                      </div>
+                      <div class="col col-stats ml-3 ml-sm-0">
+                          <div class="numbers">
+                              <h4 class="card-title">S&P BSE Sensex Index (below) </h4>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
       </div>
 
-      <canvas id="chart" width="600" height="400"></canvas>
 
       <!--   Core JS Files   -->
       <script src="/static/js/core/jquery.3.2.1.min.js"></script>
@@ -446,17 +559,35 @@
   var myChart;
   var material;
   function getData(data) {
-    const xs = [];
-    const ys = [];
-
+    const x = [];
+    const y = [];
+    const low = [];
+    const high = [];
     const table = data.split("\n").slice(1);
     table.forEach((row) => {
       const column = row.split(",");
       const date = column[0];
-      xs.push(date);
+      x.push(date);
       const close = column[4];
-      ys.push(close);
+      y.push(close);
+
+      const h = column[1];
+      high.push(h);
+      const l = column[2];
+      low.push(l);
     });
+    var lvalue = low[low.length-2];
+    var hvalue = high[high.length-2];
+
+    lvalue = strip(lvalue);
+    hvalue = strip(hvalue);
+
+    const xs=x.slice(0,x.length-1);
+    const ys=y.slice(0,y.length-1);
+
+    
+    document.getElementById("high").innerHTML = hvalue;
+    document.getElementById("low").innerHTML = lvalue;
     return { xs, ys };
   }
 
@@ -475,14 +606,16 @@
             fill: false,
             backgroundColor: "rgba(255, 99, 132, 0.2)",
             borderColor: "rgba(255, 99, 132, 1)",
-            borderWidth: 1,
+            borderWidth: 1.6,
+            pointRadius: 0.4,
           },
         ],
       },
       options: {
-        responsive: false,
+        responsive: true,
         maintainAspectRatio: false,
       },
+      
     };
 
     if (typeof this.myChart != "undefined") {
@@ -491,9 +624,15 @@
 
     this.myChart = new Chart(ctx, chartData);
     this.myChart.update();
+
   }
 
+  function strip(number) {
+    return (parseFloat(number).toPrecision(12));
+}
+  
   function submit() {
+    
     var name = document.getElementById("name");
     var entry = {
       name: name.value,
@@ -510,9 +649,20 @@
     }).then(function (response) {
       if (response.status != 200) {
         console.log(`error!`);
+        if (typeof this.myChart != "undefined") {
+          this.myChart.destroy();
+        }
+        document.getElementById("high").innerHTML = "_____";
+        document.getElementById("low").innerHTML = "_____";
+        document.getElementById("gonna-hide").style.visibility = "visible";
+        alert("Invalid input, try again!");
+        document.getElementById("gonna-hide").innerHTML = "Invalid input, try again!";
         return;
       }
       response.text().then(function (data) {
+        // var heading = document.getElementById("gonna-hide");
+        // heading.remove();
+        document.getElementById("gonna-hide").style.visibility = "hidden"
         const store = data;
         console.log(store);
         chartIt(data);
@@ -520,18 +670,51 @@
     });
   }
 
+  function completeChart() {
+    
+
+    const ctx = document.getElementById("chart");
+    let chartData = {
+      type: "line",
+      data: {
+        labels: material.xs,
+        datasets: [
+          {
+            label: "Closing Rates",
+            data: material.ys,
+            fill: false,
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 1.6,
+            pointRadius: 0.4,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+      },
+    };
+
+    if (typeof this.myChart != "undefined") {
+      this.myChart.destroy();
+    }
+
+    this.myChart = new Chart(ctx, chartData);
+    this.myChart.update();
+  }
+
+
   function chart(span) {
     const s = [];
     const t = [];
 
-    for (i = material.xs.length - span - 1; t.length <= span; i++) {
+    for (i = material.xs.length - span; t.length < span; i++) {
       s.push(material.xs[i]);
       t.push(material.ys[i]);
     }
 
     const ctx = document.getElementById("chart");
-    ctx.width = 300;
-    ctx.height = 100;
     let chartData = {
       type: "line",
       data: {
@@ -548,7 +731,7 @@
         ],
       },
       options: {
-        responsive: false,
+        responsive: true,
         maintainAspectRatio: false,
       },
     };
