@@ -35,7 +35,7 @@ new budding investors and as well as for professionals for doing data analysis q
 
 **`pip install datetime`**
 
-`pip install dateutil.relativedelta`
+**`pip install dateutil.relativedelta`**
 
 
 ### Pull requests or contribution guidelines
