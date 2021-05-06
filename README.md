@@ -36,7 +36,7 @@ Follow this guide step by step to make a contributon to the project. Don't direc
 
 2. Clone the forked repo on your profile to your local laptop as local repo. (Only need to do this step once)
 
-**git clone <url of your forked repo>**
+`git clone <url of your forked repo>`
 
 And then move into your repo by using GitBash.
 cd 11-tagged-news
