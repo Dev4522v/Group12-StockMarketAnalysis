@@ -1,16 +1,16 @@
 # Group12-StockMarketAnalysis
 # Group12-StockMarketAnalysis
 
-##Course IT314 - Group project
+## Course IT314 - Group project
 
-##Project Stock Market Analysis-Prediction
+## Project Stock Market Analysis-Prediction
 
 This is a repository for the course project in the course IT314 Software Engineering offered in Winter 2021, at DA-IICT. 
 Our aim is to create a web application that analyzes previous stock data of certain companies, with help of certain parameters that affects the stock values. 
 And after that our application predicts the future value of the selected stock. This new methodology of analyzing the stock values will be of great help for 
 new budding investors and as well as for professionals for doing data analysis quickly. 
 
-###Installing dependencies
+### Installing dependencies
 
 **`pip install flask`**
 
