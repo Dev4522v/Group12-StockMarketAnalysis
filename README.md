@@ -9,7 +9,9 @@ Our aim is to create a web application that analyzes previous stock data of cert
 And after that our application predicts the future value of the selected stock. This new methodology of analyzing the stock values will be of great help for 
 new budding investors and as well as for professionals for doing data analysis quickly. 
 
-### Installing dependencies
+
+
+## Installing dependencies
 
 **`pip install flask`**
 
@@ -38,7 +40,8 @@ new budding investors and as well as for professionals for doing data analysis q
 **`pip install dateutil.relativedelta`**
 
 
-### Pull requests or contribution guidelines
+
+## Pull requests or contribution guidelines
 
 Follow this guide step by step to make a contributon to the project. Don't directly merge your code in the main branch or merge a random pull request.
 
