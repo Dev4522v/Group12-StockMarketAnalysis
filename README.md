@@ -18,9 +18,9 @@ Install the following django version in the virtual environment directory.
 
 Follow this guide step by step to make a contributon to the project. Don't directly merge your code in the main branch or merge a random pull request.
 
-    Fork this main repository in your github profile. This will create a copy of this repo in your profile. You'll edit your code there. 
-    Click on the fork button on the top of this repository. (Only need to do this step once)
-    Clone the forked repo on your profile to your local laptop as local repo. (Only need to do this step once)
+    1. Fork this main repository in your github profile. This will create a copy of this repo in your profile. You'll edit your code there. 
+    2. Click on the fork button on the top of this repository. (Only need to do this step once)
+    3. Clone the forked repo on your profile to your local laptop as local repo. (Only need to do this step once)
 
 git clone <url of your forked repo>
 
