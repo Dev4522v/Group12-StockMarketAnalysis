@@ -390,6 +390,14 @@
                         </div>
                       </div>
                   </div>
+
+                  <div class="card-tools" onclick="predict()">
+                    <a href="#" class="btn btn-info btn-border btn-round btn-sm">
+                       <span class="btn-label">
+
+                       </span> Predict
+                    </a>
+                  </div>
               </div>
                   <div class="card-body">
                     <div class="chart-container" style="min-height: 375px">
@@ -711,6 +719,32 @@
 
     this.myChart = new Chart(ctx, chartData);
     this.myChart.update();
+  }
+
+  function predict() {
+    var namePredict = document.getElementById("name");
+    var entry = {
+      namePredict: namePredict.value,
+    };
+    console.log(entry);
+    fetch(`${window.origin}/predict`, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(entry),
+      cache: "no-cache",
+      headers: new Headers({
+        "content-type": "application/json",
+      }),
+    }).then(function (response) {
+      if (response.status != 200) {
+        console.log(`error!`);
+        return;
+      }
+      response.text().then(function (data) {
+        const store = data;
+        console.log(store);
+      });
+    });
   }
 </script>
 

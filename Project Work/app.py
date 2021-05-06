@@ -4,7 +4,7 @@ from flask import request
 import numpy as np 
 import matplotlib.pyplot as plt 
 import pandas as pd 
-from pandas_datareader import data 
+from pandas_datareader import data as api 
 from pandas_datareader._utils import RemoteDataError 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
@@ -17,19 +17,19 @@ import time
 import math
 
 
-#end_time is current time fetched from the local machine
-end_date=datetime.now()
-#start_date is the date before 1 years
-start_date=end_date-relativedelta(years=1)
-#formatting dates in suitable forms
-end_date=str(end_date.strftime('%Y-%m-%d'))
-start_date=str(start_date.strftime('%Y-%m-%d'))
-# print(end_date)
-# print(start_date)
-company_name='^NSEI'
-stock_data=data.DataReader(company_name,'yahoo',start_date,end_date)
-json = stock_data.to_json()
-print(type(json))
+# #end_time is current time fetched from the local machine
+# end_date=datetime.now()
+# #start_date is the date before 1 years
+# start_date=end_date-relativedelta(years=1)
+# #formatting dates in suitable forms
+# end_date=str(end_date.strftime('%Y-%m-%d'))
+# start_date=str(start_date.strftime('%Y-%m-%d'))
+# # print(end_date)
+# # print(start_date)
+# company_name='^NSEI'
+# stock_data=api.DataReader(company_name,'yahoo',start_date,end_date)
+# json = stock_data.to_json()
+# print(type(json))
 
 app = Flask(__name__)
 
@@ -122,7 +122,7 @@ def data2():
         # print(end_date)
         # print(start_date)
         company_name=req['name']
-        stock_price_dataframe=data.DataReader(symboldict[company_name],'yahoo',start_date,end_date)
+        stock_price_dataframe=api.DataReader(symboldict[company_name],'yahoo',start_date,end_date)
         # close_price_dataframe=stock_price_dataframe['Close']
         # close_price_dataframe=pd.DataFrame(close_price_dataframe,columns=['Close'])
 
@@ -138,6 +138,14 @@ def data2():
         #convert the final dataframe into close_price_csv file
         csved = stock_price_dataframe_clean.to_csv()
         res = make_response(csved, 200)
+        return res
+
+
+@app.route('/predict', methods = ['GET','POST'])
+def dataPredict():
+        req = request.get_json()
+        print(req)
+        res = make_response(str(lstm(req)), 200)
         return res
 
 #Function-name:give_close_price
@@ -222,7 +230,7 @@ def train_and_predict(X_train, y_train, X_test,number_of_features=50):
     model.add(Dense(units=10, activation='relu'))
     model.add(Dense(units=1))
     model.compile(loss='mean_squared_error', optimizer='adam')
-    model.fit(X_train,y_train,epochs=25,batch_size=64,verbose=1)
+    model.fit(X_train,y_train,epochs=5,batch_size=64,verbose=1)
 
     y_pred=model.predict(X_test)
 
@@ -240,7 +248,7 @@ def train_and_predict(X_train, y_train, X_test,number_of_features=50):
 
 def lstm(company_name,fraction_of_train=0.6,number_of_features=50):
     #dictionary to map company name to ticker name
-    symboldict={
+    symboldict2={
     "BAJAJ FINSERV":"BAJAJFINSV.NS",
     "TCS":"TCS.NS",
     "L&T":"LT.NS",
@@ -300,8 +308,12 @@ def lstm(company_name,fraction_of_train=0.6,number_of_features=50):
     "NOKIA":"NOKIA.HE"
     }
 
+    
+
     #fetching the close price of 1 year for the given company
-    data=give_close_price(symboldict[company_name])
+    nameX=company_name['namePredict']
+    data=give_close_price(symboldict2[nameX])
+    
 
     #scaling the data for better performance, data_scaled is 366*1 numpy array
     my_scaler_1=MinMaxScaler(feature_range=(0,1))
