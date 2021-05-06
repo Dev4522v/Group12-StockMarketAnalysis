@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Stock Prediction</title>
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <link rel="icon" href="/static/img/icon.ico" type="image/x-icon" />
+
+    <!-- Fonts and icons -->
+    <script src="/static/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                "families": ["Open+Sans:300,400,600,700"]
+            },
+            custom: {
+                "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"],
+                urls: ['/static/css/fonts.css']
+            },
+            active: function() {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/azzara.min.css">
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="/static/css/demo.css">
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <div class="main-header" data-background-color="purple">
+
+
+            <div class="logo-header">
+
+                <a href="index.html" class="logo">
+                    <p style="color:rgb(255, 255, 255);font-size:22px;font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; text-align:center;">
+                        Stock Prediction
+
+                    </p>
+                </a>
+                <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon">
+						<i class="fa fa-bars"></i>
+					</span>
+				</button>
+                <button class="topbar-toggler more"><i class="fa fa-ellipsis-v"></i></button>
+                <div class="navbar-minimize">
+
+                </div>
+            </div>
+            <!-- End Logo Header -->
+
+            <!-- Navbar Header -->
+            <nav class="navbar navbar-header navbar-expand-lg">
+
+
+            </nav>
+            <!-- End Navbar -->
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+
+            <div class="sidebar-background"></div>
+            <div class="sidebar-wrapper scrollbar-inner">
+                <div class="sidebar-content">
+
+                    <ul class="nav">
+
+                        <li class="nav-item active">
+                            <span class="sidebar-mini-icon">
+								<a href="index.html">
+                                    <i class="fas fa-home"></i>
+                                    <h4 class="text-section">Overview</h4>
+                                    
+                                </a>
+							</span>
+
+                        </li>
+                        
+
+
+
+                        <li class="nav-item">
+                            <a href="blog.html">
+                                <i class="fas fa-desktop"></i>
+                                <p>Blog</p>
+                                <span class="badge badge-count badge-success">4</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="documentation.html">
+                                <i class="fas fa-desktop"></i>
+                                <p>Documentation</p>
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- End Sidebar -->
+        <div class="main-panel">
+            <div class="content">
+                <div class="page-inner">
+                    
+
+                    <!-- Blogs -->
+                    <h4 class="page-title">Blog</h4>
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <div class="col-md-15">
+                                <div class="card card-post card-round">
+                                    <img class="card-img-top" src="/static/blog_image/bitcoin.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+
+                                        </div>
+                                        <div class="separator-solid"></div>
+                                        <h3><a href="https://bfsi.economictimes.indiatimes.com/blog/the-journey-of-bitcoin-in-india/4505" target="_blank">
+												The journey of Bitcoin in India
+											</a>
+                                        </h3>
+                                        <p class="card-text">Over the years, repeated statements and hear says about Cryptocurrency regulations in Indian have actually made the investor more resilient to such news.
+                                        </p>
+                                        <a href="https://bfsi.economictimes.indiatimes.com/blog/the-journey-of-bitcoin-in-india/4505" target="_blank" class="btn btn-primary btn-rounded btn-sm">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-post card-round">
+                                <img class="card-img-top" src="/static/blog_image/Investment.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <div class="d-flex">
+
+                                    </div>
+                                    <div class="separator-solid"></div>
+                                    <h3><a href="https://www.etmoney.com/blog/5-things-you-should-do-before-investing-money/" target="_blank">
+											5 things to do before Investing Money
+										</a>
+                                    </h3>
+                                    <p class="card-text">The easiest way to make your money while you sleep is by investing. However,if the investments are not done in a planned manner with a proper objective in mind.</p>
+                                    <a href="https://www.etmoney.com/blog/5-things-you-should-do-before-investing-money/" target="_blank" class="btn btn-primary btn-rounded btn-sm">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-post card-round">
+                                <img class="card-img-top" src="/static/blog_image/ipo.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <div class="d-flex">
+
+                                    </div>
+                                    <div class="separator-solid"></div>
+                                    <h3><a href="https://www.mymoneysage.in/blog/how-to-identify-a-good-ipo/" target="_blank">
+											How to to identify a good ipo?
+										</a>
+                                    </h3>
+                                    <p class="card-text">You might have heard the term 'a company goes Public' this means that a private company has issued shares in the form of new stocks </p>
+                                    <a href="https://www.mymoneysage.in/blog/how-to-identify-a-good-ipo/" target="_blank" class="btn btn-primary btn-rounded btn-sm">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <div class="col-md-15">
+                                <div class="card card-post card-round">
+                                    <img class="card-img-top" src="/static/blog_image/loan.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+
+                                        </div>
+                                        <div class="separator-solid"></div>
+                                        <h3><a href="https://getmoneyrich.com/invest-or-pay-off-home-loan/" target="_blank">
+												Invest or prepay the home loan?
+											</a>
+                                        </h3>
+                                        <p class="card-text">If you are in a dilemma about whether to invest or prepay the home loan using your spare cash, then you are not alone.</p>
+                                        <a href="https://getmoneyrich.com/invest-or-pay-off-home-loan/" target="_blank" class="btn btn-primary btn-rounded btn-sm">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-post card-round">
+                                <img class="card-img-top" src="/static/blog_image/algo.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <div class="d-flex">
+
+                                    </div>
+                                    <div class="separator-solid"></div>
+                                    <h3><a href="https://www.indiratrade.com/blog/algos-are-changing-indias-stock-market/5106" target="_blank">
+											Algos are changing India’s stock market
+										</a>
+                                    </h3>
+                                    <p class="card-text">Indian traders and investors are quickly catching up with algorithmic trading, a gift of technical advancement to the stock market.</p>
+                                    <a href="https://www.indiratrade.com/blog/algos-are-changing-indias-stock-market/5106" target="_blank" class="btn btn-primary btn-rounded btn-sm">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-post card-round">
+                                <img class="card-img-top" src="/static/blog_image/gold.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <div class="d-flex">
+
+                                    </div>
+                                    <div class="separator-solid"></div>
+                                    <h3><a href="https://www.etmoney.com/blog/gold-investment-options-in-india-which-one-is-best-for-you/" target="_blank">
+											Gold Investment Options in India
+										</a>
+                                    </h3>
+                                    <p class="card-text">Gold has been a symbol of wealth since ancient times and even in the Information Age has managed to maintain its relevance as an investment.
+                                    </p>
+                                    <a href="https://www.etmoney.com/blog/gold-investment-options-in-india-which-one-is-best-for-you/" target="_blank" class="btn btn-primary btn-rounded btn-sm">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <div class="col-md-15">
+                                <div class="card card-post card-round">
+                                    <img class="card-img-top" src="/static/blog_image/planning.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+
+                                        </div>
+                                        <div class="separator-solid"></div>
+                                        <h3><a href="https://www.mymoneysage.in/blog/finance-planning/" target="_blank">
+												Finance planning - Why is it so important?
+											</a>
+                                        </h3>
+                                        <p class="card-text">Managing wealth is a difficult task ,and personal finance plannig is gaining more importance with time.people these days require a strategy for manazing thier money </p>
+                                        <a href="https://www.mymoneysage.in/blog/finance-planning/" target="_blank" class="btn btn-primary btn-rounded btn-sm">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-post card-round">
+                                <img class="card-img-top" src="/static/blog_image/investment instruments.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <div class="d-flex">
+
+                                    </div>
+                                    <div class="separator-solid"></div>
+                                    <h3><a href="https://rmoneyindia.com/research-blog-beginners/shares/what-are-some-safe-investment-instruments-in-current-pandemic-scenario/" target="_blank">
+											What Are Some Safe Investment Instruments in Current Pandemic Scenario?
+										</a>
+                                    </h3>
+                                    <p class="card-text">Investors are finding the safe havens instruments to invest their money in a time of high uncertanity.</p>
+                                    <a href="https://rmoneyindia.com/research-blog-beginners/shares/what-are-some-safe-investment-instruments-in-current-pandemic-scenario/" target="_blank" class="btn btn-primary btn-rounded btn-sm">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card card-post card-round">
+                                <img class="card-img-top" src="/static/blog_image/risk.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <div class="d-flex">
+
+                                    </div>
+                                    <div class="separator-solid"></div>
+                                    <h3><a href="https://www.stockbasket.com/blog/with-high-risk-comes-high-reward/" target="_blank">
+											With High Risk comes High Reward
+										</a>
+                                    </h3>
+                                    <p class="card-text">A common saying which we all must have read during our school days is “no pain, no gain”. This simply implies that one needs to get out of one’s comfort zone.
+                                    </p>
+                                    <a href="https://www.stockbasket.com/blog/with-high-risk-comes-high-reward/" target="_blank" class="btn btn-primary btn-rounded btn-sm">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!--   Core JS Files   -->
+        <script src="assets/js/core/jquery.3.2.1.min.js"></script>
+        <script src="assets/js/core/popper.min.js"></script>
+        <script src="assets/js/core/bootstrap.min.js"></script>
+        <!-- jQuery UI -->
+        <script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+        <script src="assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+        <!-- Bootstrap Toggle -->
+        <script src="assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+        <!-- jQuery Scrollbar -->
+        <script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+        <!-- Azzara JS -->
+        <script src="assets/js/ready.min.js"></script>
+        <!-- Azzara DEMO methods, don't include it in your project! -->
+        <script src="assets/js/setting-demo.js"></script>
+</body>
+
+</html>
