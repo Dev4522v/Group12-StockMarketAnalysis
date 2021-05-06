@@ -38,7 +38,7 @@ new budding investors and as well as for professionals for doing data analysis q
 **`pip install dateutil.relativedelta`**
 
 
-###Pull requests or contribution guidelines
+### Pull requests or contribution guidelines
 
 Follow this guide step by step to make a contributon to the project. Don't directly merge your code in the main branch or merge a random pull request.
 
