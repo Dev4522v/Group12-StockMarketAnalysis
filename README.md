@@ -22,7 +22,7 @@ Follow this guide step by step to make a contributon to the project. Don't direc
 2. Click on the fork button on the top of this repository. (Only need to do this step once)
 3. Clone the forked repo on your profile to your local laptop as local repo. (Only need to do this step once)
 
-   git clone <url of your forked repo>
+git clone <url of your forked repo>
 
 And then move into your repo by using GitBash.
 cd 11-tagged-news
@@ -39,7 +39,7 @@ git checkout -b dev-<YOUR NAME>
 6. If there has been any changes in the main repo after you have cloned your repo, make sure to sync your repo using this guide. 
 7. Or you can simply run this command, this will update your main from main repo, so make sure your feature branch also has this changes and then start working.
 
-git pull upstream main
+> git pull upstream main
 
 8. Add, commit and push your changes in dev-branch in your local repository. (Do this step after making your changes)
 
