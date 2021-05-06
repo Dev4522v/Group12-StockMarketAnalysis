@@ -13,6 +13,7 @@ new budding investors and as well as for professionals for doing data analysis q
 ###Installing dependencies
 
 **`pip install flask`**
+
 pip install numpy
 pip install matplotlib
 pip install pandas
