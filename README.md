@@ -35,7 +35,7 @@ new budding investors and as well as for professionals for doing data analysis q
 
 **`pip install datetime`**
 
-**`pip install dateutil.relativedelta`**
+`pip install dateutil.relativedelta`
 
 
 ### Pull requests or contribution guidelines
@@ -49,6 +49,7 @@ Follow this guide step by step to make a contributon to the project. Don't direc
 **`git clone <url of your forked repo>`**
 
 And then move into your repo by using GitBash.
+
 **`cd 11-tagged-news`**
 
 3. Set this repo as the remote upstream. This will help further to sync your local repo with the updated version. (Only need to do this step once) Learn more
