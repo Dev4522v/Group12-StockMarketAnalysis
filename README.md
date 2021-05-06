@@ -2,7 +2,7 @@
 
 ## Course IT314 - Group project
 
-## Project Stock Market Analysis & Prediction
+## Project Description:
 
 This is a repository for the course project in the course IT314 Software Engineering offered in Winter 2021, at DA-IICT. 
 Our aim is to create a web application that analyzes previous stock data of certain companies, with help of certain parameters that affects the stock values. 
