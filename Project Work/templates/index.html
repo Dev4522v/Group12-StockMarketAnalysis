@@ -390,19 +390,11 @@
                         </div>
                       </div>
                   </div>
-
-                  <div class="card-tools" onclick="predict()">
-                    <a href="#" class="btn btn-info btn-border btn-round btn-sm">
-                       <span class="btn-label">
-
-                       </span> Predict
-                    </a>
-                  </div>
               </div>
                   <div class="card-body">
                     <div class="chart-container" style="min-height: 375px">
-                      <img src="static\WhatsApp Image 2021-05-06 at 7.52.05 PM.jpeg" width="640" height="480" id="gonna-hide" alt="First search a stock" style="margin: 0; position: absolute; top: 45%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%);">
-                      <h3 id="gonna-hide" style="opacity: 0.6; visibility: hidden; margin: 0; position: absolute; top: 55%; left: 50%; margin-right: -50%; transform: translate(-55%, -50%);">First search a stock</h3>
+                      <img src="static\WhatsApp Image 2021-05-06 at 7.52.05 PM.jpeg" width="640" height="480" id="gonna-hide" alt="First search a stock" style="opacity: 0.68; margin: 0; position: absolute; top: 48%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%);">
+                      <h3 id="gonna-hide-it" style="visibility: hidden; margin: 0; position: absolute; top: 45%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%);">First search a stock</h3>
                       <canvas id="chart" height="500" width="900" style="width:100%;height:100%;"></canvas>
                     </div>
                     <div id="myChartLegend"></div>
@@ -421,7 +413,7 @@
                       </div>
                       <div class="col col-stats ml-3 ml-sm-0">
                           <div class="numbers">
-                              <p class="card-category" style="font-size: 14px;">24-Hour High</p>
+                              <p class="card-category" style="font-size: 14px; font-weight: 800;">Today's High</p>
                               <h4 class="card-title">
                                 <div id="high">
                                   <p>_____</p>
@@ -443,7 +435,7 @@
                       </div>
                       <div class="col col-stats ml-3 ml-sm-0">
                           <div class="numbers">
-                              <p class="card-category" style="font-size: 14px;">24-Hour Low</p>
+                              <p class="card-category" style="font-size: 14px; font-weight: 800;">Today's Low</p>
                               <h4 class="card-title">
                                 <div id="low">
                                   <p>_____</p>
@@ -465,7 +457,16 @@
                       </div>
                       <div class="col col-stats ml-3 ml-sm-0">
                           <div class="numbers">
-                              <h4 class="card-title">S&P BSE Sensex Index (below) </h4>
+                            <p class="card-category" style="font-size: 15px; font-weight: 800;">Prediction</p>
+                              <!-- <h4 class="card-title"> Prediction </h4> -->
+                              <div id="predict-visible" style="height:40pt; visibility:hidden;"></div>
+                              <div class="card-tools" id="predict-hide" onclick="predict()">
+                                <a href="#" class="btn btn-info btn-border btn-round btn-sm">
+                                   <span class="btn-label">
+            
+                                   </span> Predict
+                                </a>
+                              </div>
                           </div>
                       </div>
                   </div>
@@ -535,6 +536,72 @@
 <script>
   var myChart;
   var material;
+  var mapped;
+  var map;
+
+  function createMap(){
+    map = new Map();
+    map.set('BAJAJ FINSERV', 'INR');
+    map.set('TCS', 'INR');
+    map.set('L&T', 'INR');
+    map.set('TECH MAHINDRA', 'INR');
+    map.set('BRITANNIA', 'INR');
+    map.set('SHREE CEMENT', 'INR');
+    map.set('ONGC', 'INR');
+    map.set('BAJAJ AUTO', 'INR');
+    map.set('ICICI BANK', 'INR');
+    map.set('COAL INDIA', 'INR');
+    map.set('GRASIM', 'INR');
+    map.set('HERO MOTOCORP', 'INR');
+    map.set('ULTRATECH CEMENT', 'INR');
+    map.set('TATA CONSUMER', 'INR');
+    map.set('NESTLE', 'INR');
+    map.set('HINDALCO', 'INR');
+    map.set('BAJAJ FINANCE', 'INR');
+    map.set('MARUTI SUZUKI', 'INR');
+    map.set('INDUSIND BANK', 'INR');
+    map.set('TATA STEEL', 'INR');
+    map.set('TITAN', 'INR');
+    map.set('CIPLA', 'INR');
+    map.set('ITC', 'INR');
+    map.set('HDFC LIFE INSURANCE', 'INR');
+    map.set('WIPRO', 'INR');
+    map.set('KOTAK MAHINDRA BANK', 'INR');
+    map.set('NTPC', 'INR');
+    map.set('RELIANCE IND.', 'INR');
+    map.set('BHARTI AIRTEL', 'INR');
+    map.set('YES BANK', 'INR');
+    map.set('IDBI BANK', 'INR');
+    map.set('IDEA', 'INR');
+    map.set('RELIANCE COMMUNICATION', 'INR');
+    map.set('TATA MOTORS', 'INR');
+    map.set('BANK OF BARODA', 'INR');
+    map.set('STATE BANK OF INDIA', 'INR');
+    map.set('TATA POWER', 'INR');
+    map.set('GAIL LTD.', 'INR');
+    map.set('NANDAN DENIM LTD.', 'INR');
+    map.set('SENSEX', 'INR');
+    map.set('NIFT 50', 'INR');
+    map.set('DOW', 'USD');
+    map.set('PUNJAB NATIONAL BANK', 'INR');
+    map.set('VIVO BIO TECH', 'INR');
+    map.set('APPLE', 'USD');
+    map.set('AMAZON', 'USD');
+    map.set('FACEBOOK', 'USD');
+    map.set('GOOGLE', 'USD');
+    map.set('LOREAL', 'EUR');
+    map.set('P&G', 'USD');
+    map.set('UNILEVER', 'USD');
+    map.set('MICROSOFT', 'USD');
+    map.set('RAYMOND', 'INR');
+    map.set('PHILIPS', 'USD');
+    map.set('TESLA', 'USD');
+    map.set('SONY', 'USD');
+    map.set('NOKIA', 'EUR');
+  }
+
+
+
   function getData(data) {
     const x = [];
     const y = [];
@@ -563,15 +630,30 @@
     const ys=y.slice(0,y.length-1);
 
     
+    
+    if(mapped == 'USD'){
+      hvalue = '$ ' + hvalue;
+      lvalue = '$ ' + lvalue;
+    }
+    if(mapped == 'INR'){
+      hvalue = '₹ ' + hvalue;
+      lvalue = '₹ ' + lvalue;
+    }
+    if(mapped == 'EUR'){
+      hvalue = '€ ' + hvalue;
+      lvalue = '€ ' + lvalue;
+    }
     document.getElementById("high").innerHTML = hvalue;
     document.getElementById("low").innerHTML = lvalue;
     return { xs, ys };
   }
 
+
+
   function chartIt(data) {
     material = getData(data);
     const ctx = document.getElementById("chart");
-
+    console.log(mapped);
     let chartData = {
       type: "line",
       data: {
@@ -591,6 +673,24 @@
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    
+                    callback: function(val, index) {
+                      
+                      if(mapped == 'USD')
+                        return  ('$ ' + val);
+
+                      if(mapped == 'INR')
+                        return  ('₹ ' + val);
+
+                      if(mapped == 'EUR')
+                        return ('€ ' + val);
+                    }
+                }
+            }]
+        }
       },
       
     };
@@ -614,6 +714,10 @@
     var entry = {
       name: name.value,
     };
+    createMap();
+    mapped=map.get(name.value);
+    console.log(mapped);
+    document.getElementById("predict-visible").style.visibility = "hidden";
     console.log(entry);
     fetch(`${window.origin}/findCompany`, {
       method: "POST",
@@ -639,6 +743,7 @@
       response.text().then(function (data) {
         // var heading = document.getElementById("gonna-hide");
         // heading.remove();
+        
         document.getElementById("gonna-hide").style.visibility = "hidden"
         const store = data;
         console.log(store);
@@ -670,6 +775,24 @@
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    
+                    callback: function(val, index) {
+                      
+                      if(mapped == 'USD')
+                        return  ('$ ' + val);
+
+                      if(mapped == 'INR')
+                        return  ('₹ ' + val);
+
+                      if(mapped == 'EUR')
+                        return ('€ ' + val);
+                    }
+                }
+            }]
+        }
       },
     };
 
@@ -710,6 +833,24 @@
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    
+                    callback: function(val, index) {
+                      
+                      if(mapped == 'USD')
+                        return  ('$ ' + val);
+
+                      if(mapped == 'INR')
+                        return  ('₹ ' + val);
+
+                      if(mapped == 'EUR')
+                        return ('€ ' + val);
+                    }
+                }
+            }]
+        }
       },
     };
 
@@ -738,11 +879,25 @@
     }).then(function (response) {
       if (response.status != 200) {
         console.log(`error!`);
+        document.getElementById("predict-visible").innerHTML = "Unavailable, try again!";
+        document.getElementById("predict-visible").style.visibility = "hidden";
         return;
       }
       response.text().then(function (data) {
         const store = data;
         console.log(store);
+        var h = strip(store);
+        if(mapped == 'USD'){
+          h = '$ ' + h;
+        }
+        if(mapped == 'INR'){
+          h = '₹ ' + h;
+        }
+        if(mapped == 'EUR'){
+          h = '€ ' + h;
+        }
+        document.getElementById("predict-visible").innerHTML = h;
+        document.getElementById("predict-visible").style.visibility = "visible";
       });
     });
   }
