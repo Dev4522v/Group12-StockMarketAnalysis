@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Stock Prediction</title>
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <link rel="icon" href="/static/img/icon.ico" type="image/x-icon" />
+
+    <!-- Fonts and icons -->
+    <script src="/static/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                "families": ["Open+Sans:300,400,600,700"]
+            },
+            custom: {
+                "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"],
+                urls: ['/static/css/fonts.css']
+            },
+            active: function() {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/azzara.min.css">
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="/static/css/demo.css">
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <div class="main-header" data-background-color="purple">
+
+
+            <div class="logo-header">
+
+                <a href="index.html" class="logo">
+                    <p style="color:rgb(255, 255, 255);font-size:22px;font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; text-align:center;">
+                        Stock Prediction
+
+                    </p>
+                </a>
+                <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon">
+							<i class="fa fa-bars"></i>
+						</span>
+					</button>
+                <button class="topbar-toggler more"><i class="fa fa-ellipsis-v"></i></button>
+                <div class="navbar-minimize">
+
+                </div>
+            </div>
+            <!-- End Logo Header -->
+
+            <!-- Navbar Header -->
+            <nav class="navbar navbar-header navbar-expand-lg">
+
+
+            </nav>
+            <!-- End Navbar -->
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+
+            <div class="sidebar-background"></div>
+            <div class="sidebar-wrapper scrollbar-inner">
+                <div class="sidebar-content">
+
+                    <ul class="nav">
+
+                        <li class="nav-item active">
+                            <span class="sidebar-mini-icon">
+								<a href="index.html">
+                                    <i class="fas fa-home"></i>
+                                    <h4 class="text-section">Overview</h4>
+                                    
+                                </a>
+							</span>
+
+                        </li>
+                        
+
+
+                        <li class="nav-item">
+                            <a href="blog.html">
+                                <i class="fas fa-desktop"></i>
+                                <p>Blog</p>
+                                <span class="badge badge-count badge-success">4</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="documentation.html">
+                                <i class="fas fa-desktop"></i>
+                                <p>Documentation</p>
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- End Sidebar -->
+        <div class="main-panel">
+            <div class="content">
+                <div class="page-inner">
+                    <h4 class="page-title">About this site</h4>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card card-with-nav">
+                                <div class="card-header">
+                                    <div class="row row-nav-line">
+                                        <ul class="nav nav-tabs nav-line nav-color-secondary" role="tablist">
+                                            <li class="nav-item"> <a class="nav-link active show" data-toggle="tab" href="documentation.html" role="tab" aria-selected="true">Uses</a> </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mt-3">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-group-default">
+                                                <label> <h3>Functionality</h3> </label>
+                                                <p> Whenever User opens the website, the dashboard/homepage will be shown on the screen Which will basically contain a search bar,
+                                                    <br>Sensex and Nifty prices, list of around 50 stocks and more options like view blogs, view documentation, etc</p>
+
+                                                <p>Once a user enters the name of stock which he wants to see, the graph analysis of that particular stock will be shown. </p>
+                                                <p>The user can also select the timeframe for which duration he wants to see the analysis.</p>
+                                                <p>Basically this graph will show the price movement of that particular stock over the time period which user has selected.</p>
+                                                <p>The basic indices of that stock like RSI, market capitalization,open value, close value, PE ratio will also be shown to the user.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group form-group-default">
+                                                <label> <h3>Prediction</h3> </label>
+                                                <p>Now if a user wants to see the future prediction of that particular stock, it will also be shown to him in the form of a graph.</p>
+                                                <p>The prediction might not be pinpoint accurate. It will be relying on the past movement of that stock.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group form-group-default">
+                                                <label> <h4>More</h4> </label>
+                                                <p>Users can also watch some blogs or articles related to the market.</p>
+                                                <p>If a user wants to see the documentation part of the website, he can select the option for the same.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card card-with-nav">
+                                <div class="card-header">
+                                    <div class="row row-nav-line">
+                                        <ul class="nav nav-tabs nav-line nav-color-secondary" role="tablist">
+                                            <li class="nav-item"> <a class="nav-link active show" data-toggle="tab" href="documentation.html" role="tab" aria-selected="true">Goals</a> </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mt-3">
+
+                                        <div class="col-md-12">
+                                            <div class="form-group form-group-default">
+                                                <p>
+                                                    Our aim is to create software that analyzes previous stock data of certain companies, with help of certain parameters that affect stock value
+                                                    <br>and determine the values that particular stock will have in near future.
+                                                </p>
+
+                                                <p>Analysis of stocks will be useful for new investors to invest in the stock market based on the various factors considered by the software.
+
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <!-- End Custom template -->
+                    </div>
+                    <!--   Core JS Files   -->
+                    <script src="/static/js/core/jquery.3.2.1.min.js"></script>
+                    <script src="/static/js/core/popper.min.js"></script>
+                    <script src="/static/js/core/bootstrap.min.js"></script>
+                    <!-- jQuery UI -->
+                    <script src="/static/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+                    <script src="/static/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+                    <!-- Moment JS -->
+                    <script src="/static/js/plugin/moment/moment.min.js"></script>
+                    <!-- DateTimePicker -->
+                    <script src="/static/js/plugin/datepicker/bootstrap-datetimepicker.min.js"></script>
+                    <!-- Bootstrap Toggle -->
+                    <script src="/static/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+                    <!-- jQuery Scrollbar -->
+                    <script src="/static/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+                    <!-- Azzara JS -->
+                    <script src="/static/js/ready.min.js"></script>
+                    <!-- Azzara DEMO methods, don't include it in your project! -->
+                    <script src="/static/js/setting-demo.js"></script>
+                    <script>
+                        $('#datepicker').datetimepicker({
+                            format: 'MM/DD/YYYY',
+                        });
+                    </script>
+</body>
+
+</html>
