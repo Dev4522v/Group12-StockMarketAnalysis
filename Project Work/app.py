@@ -230,7 +230,7 @@ def train_and_predict(X_train, y_train, X_test,number_of_features=50):
     model.add(Dense(units=10, activation='relu'))
     model.add(Dense(units=1))
     model.compile(loss='mean_squared_error', optimizer='adam')
-    model.fit(X_train,y_train,epochs=5,batch_size=64,verbose=1)
+    model.fit(X_train,y_train,epochs=25,batch_size=64,verbose=1)
 
     y_pred=model.predict(X_test)
 
