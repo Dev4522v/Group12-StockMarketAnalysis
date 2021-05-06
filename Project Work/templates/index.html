@@ -1,156 +1,565 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block head %}
 
-{% block head %} {% endblock %}
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Stock Prediction</title>
+<meta
+  content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+  name="viewport"
+/>
+<link rel="icon" href="/static/img/icon.ico" type="image/x-icon" />
 
-{% block body %}
-<div class = "content">
-    <h1>Task Master</h1>
-    <h1>
+<!-- Fonts and icons -->
+<script src="/static/js/plugin/webfont/webfont.min.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ["Open+Sans:300,400,600,700"],
+    },
+    custom: {
+      families: [
+        "Flaticon",
+        "Font Awesome 5 Solid",
+        "Font Awesome 5 Regular",
+        "Font Awesome 5 Brands",
+      ],
+      urls: ["../static/css/fonts.css"],
+    },
+    active: function () {
+      sessionStorage.fonts = true;
+    },
+  });
+</script>
+
+<!-- CSS Files -->
+<link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/static/css/azzara.min.css" />
+
+<!-- CSS Just for demo purpose, don't include it in your project -->
+<link rel="stylesheet" href="/static/css/demo.css" />
+
+{% endblock %} {% block body %}
+<div class="wrapper">
+  <div class="main-header" data-background-color="purple">
+    <!-- Logo Header -->
+    <div class="logo-header">
+      <a href="index.html" class="logo">
+        <p
+          style="
+            color: rgb(255, 255, 255);
+            font-size: 22px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+              'Lucida Sans', Arial, sans-serif;
+            text-align: center;
+          "
+        >
+          Stock Prediction
+        </p>
+      </a>
+      <button
+        class="navbar-toggler sidenav-toggler ml-auto"
+        type="button"
+        data-toggle="collapse"
+        data-target="collapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon">
+          <i class="fa fa-bars"></i>
+        </span>
+      </button>
+      <button class="topbar-toggler more">
+        <i class="fa fa-ellipsis-v"></i>
+      </button>
+      <div class="navbar-minimize">
+        <button class="btn btn-minimize btn-rounded">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+    </div>
+    <!-- End Logo Header -->
+
+    <!-- Shreeya modified.-->
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font: 16px Arial;
+      }
+
+      /*the container must be positioned relative:*/
+      .autocomplete {
+        position: relative;
+        display: inline-block;
+      }
+
+      input {
+        border: 1px solid transparent;
+        background-color: #f1f1f1;
+        padding: 10px;
+        font-size: 16px;
+      }
+
+      input[type="text"] {
+        background-color: #f1f1f1;
+        width: 100%;
+      }
+
+      .button {
+        background-color: DodgerBlue;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      .autocomplete-items {
+        position: absolute;
+        border: 1px solid #d4d4d4;
+        border-bottom: none;
+        border-top: none;
+        z-index: 99;
+        /*position the autocomplete items to be the same width as the container:*/
+        top: 100%;
+        left: 0;
+        right: 0;
+      }
+
+      .autocomplete-items div {
+        padding: 10px;
+        cursor: pointer;
+        background-color: #fff;
+        border-bottom: 1px solid #d4d4d4;
+      }
+
+      /*when hovering an item:*/
+      .autocomplete-items div:hover {
+        background-color: #716aca;
+      }
+
+      /*when navigating through the items using the arrow keys:*/
+      .autocomplete-active {
+        background-color: #716aca !important;
+        color: #ffffff;
+      }
+    </style>
+    <!-- Navbar Header -->
+    <nav class="navbar navbar-header navbar-expand-lg">
+      <div class="container-fluid">
+        <div class="collapse" id="search-nav">
+          <form
+            class="navbar-left navbar-form nav-search mr-md-3"
+            autocomplete="off"
+          >
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <button type="submit" class="btn btn-search pr-1">
+                  <i class="fa fa-search search-icon"></i>
+                </button>
+              </div>
+              <div class="autocomplete">
+                <input
+                  id="name"
+                  type="text"
+                  name="myCountry"
+                  placeholder="Search stocks..."
+                  class="form-control"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <script>
+          function autocomplete(inp, arr) {
+            /*the autocomplete function takes two arguments,
+                      the text field element and an array of possible autocompleted values:*/
+            var currentFocus;
+            /*execute a function when someone writes in the text field:*/
+            inp.addEventListener("input", function (e) {
+              var a,
+                b,
+                i,
+                val = this.value;
+              /*close any already open lists of autocompleted values*/
+              closeAllLists();
+              if (!val) {
+                return false;
+              }
+              currentFocus = -1;
+              /*create a DIV element that will contain the items (values):*/
+              a = document.createElement("DIV");
+              a.setAttribute("id", this.id + "autocomplete-list");
+              a.setAttribute("class", "autocomplete-items");
+              /*append the DIV element as a child of the autocomplete container:*/
+              this.parentNode.appendChild(a);
+              /*for each item in the array...*/
+              for (i = 0; i < arr.length; i++) {
+                /*check if the item starts with the same letters as the text field value:*/
+                if (
+                  arr[i].substr(0, val.length).toUpperCase() ==
+                  val.toUpperCase()
+                ) {
+                  /*create a DIV element for each matching element:*/
+                  b = document.createElement("DIV");
+                  /*make the matching letters bold:*/
+                  b.innerHTML =
+                    "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                  b.innerHTML += arr[i].substr(val.length);
+                  /*insert a input field that will hold the current array item's value:*/
+                  b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                  /*execute a function when someone clicks on the item value (DIV element):*/
+                  b.addEventListener("click", function (e) {
+                    /*insert the value for the autocomplete text field:*/
+                    inp.value = this.getElementsByTagName("input")[0].value;
+                    /*close the list of autocompleted values,
+                                  (or any other open lists of autocompleted values:*/
+                    closeAllLists();
+                  });
+                  a.appendChild(b);
+                }
+              }
+            });
+            /*execute a function presses a key on the keyboard:*/
+            inp.addEventListener("keydown", function (e) {
+              var x = document.getElementById(this.id + "autocomplete-list");
+              if (x) x = x.getElementsByTagName("div");
+              if (e.keyCode == 40) {
+                /*If the arrow DOWN key is pressed,
+                            increase the currentFocus variable:*/
+                currentFocus++;
+                /*and and make the current item more visible:*/
+                addActive(x);
+              } else if (e.keyCode == 38) {
+                //up
+                /*If the arrow UP key is pressed,
+                            decrease the currentFocus variable:*/
+                currentFocus--;
+                /*and and make the current item more visible:*/
+                addActive(x);
+              } else if (e.keyCode == 13) {
+                /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                e.preventDefault();
+                if (currentFocus > -1) {
+                  /*and simulate a click on the "active" item:*/
+                  if (x) x[currentFocus].click();
+                }
+              }
+            });
+            function addActive(x) {
+              /*a function to classify an item as "active":*/
+              if (!x) return false;
+              /*start by removing the "active" class on all items:*/
+              removeActive(x);
+              if (currentFocus >= x.length) currentFocus = 0;
+              if (currentFocus < 0) currentFocus = x.length - 1;
+              /*add class "autocomplete-active":*/
+              x[currentFocus].classList.add("autocomplete-active");
+            }
+            function removeActive(x) {
+              /*a function to remove the "active" class from all autocomplete items:*/
+              for (var i = 0; i < x.length; i++) {
+                x[i].classList.remove("autocomplete-active");
+              }
+            }
+            function closeAllLists(elmnt) {
+              /*close all autocomplete lists in the document,
+                        except the one passed as an argument:*/
+              var x = document.getElementsByClassName("autocomplete-items");
+              for (var i = 0; i < x.length; i++) {
+                if (elmnt != x[i] && elmnt != inp) {
+                  x[i].parentNode.removeChild(x[i]);
+                }
+              }
+            }
+            /*execute a function when someone clicks in the document:*/
+            document.addEventListener("click", function (e) {
+              closeAllLists(e.target);
+            });
+          }
+          var companies = [
+            "BAJAJFINSV",
+            "TCS",
+            "LT",
+            "TECHM",
+            "BRITANNIA",
+            "SHREECEM",
+            "ONGC",
+            "BAJAJ-AUTO",
+            "ICICIBANK",
+            "COALINDIA",
+            "GRASIM",
+            "HEROMOTOCO",
+            "ULTRACEMCO",
+            "TATACONSUM",
+            "NESTLEIND",
+            "HINDALCO",
+            "BAJFINANCE",
+            "MARUTI",
+            "INDUSINDBK",
+            "TATASTEEL",
+            "TITAN",
+            "MM",
+            "CIPLA",
+            "ITC",
+            "HDFCLIFE",
+            "WIPRO",
+            "KOTAKBANK",
+            "NTPC",
+            "RELIANCE",
+            "BHARTIARTL",
+          ];
+          autocomplete(document.getElementById("name"), companies);
+        </script>
+        <!--Shreeya modified-->
+        <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+          <li class="nav-item toggle-nav-search hidden-caret">
+            <a
+              class="nav-link"
+              data-toggle="collapse"
+              href="#search-nav"
+              role="button"
+              aria-expanded="false"
+              aria-controls="search-nav"
+            >
+              <i class="fa fa-search"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-background"></div>
+    <div class="sidebar-wrapper scrollbar-inner">
+      <div class="sidebar-content">
+        <ul class="nav">
+          <li class="nav-item active">
+            <span class="sidebar-mini-icon">
+              <a href="index.html">
+                <i class="fas fa-home"></i>
+                <h4 class="text-section">Overview</h4>
+              </a>
+            </span>
+          </li>
+          
+
+          <li class="nav-item">
+            <a href="blog.html">
+              <i class="fas fa-desktop"></i>
+              <p>Blog</p>
+              <span class="badge badge-count badge-success">4</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="documentation.html">
+              <i class="fas fa-desktop"></i>
+              <p>Documentation</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End Sidebar -->
+  <div class="main-panel">
+    <div class="content">
+      <h1>Task Master</h1>
+      <h1>
         Hello World!
-    </h1>
+      </h1>
 
-    <form>
+      <form>
         <label>Name</label>
-        <input type="text" id="name" placeholder="Enter company name">
-        
-    </form>
-    <div>
-        <br>
+        <input type="text" id="name" placeholder="Enter company name" />
+      </form>
+      <div>
+        <br />
         <button onclick="submit()">Submit</button>
         <button onclick="chart(7)">7 days</button>
         <button onclick="chart(14)">14 days</button>
         <button onclick="chart(28)">1 month</button>
+      </div>
+
+      <canvas id="chart" width="600" height="400"></canvas>
+
+      <!--   Core JS Files   -->
+      <script src="/static/js/core/jquery.3.2.1.min.js"></script>
+      <script src="/static/js/core/popper.min.js"></script>
+      <script src="/static/js/core/bootstrap.min.js"></script>
+
+      <!-- jQuery UI -->
+      <script src="/static/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+      <script src="/static/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+
+      <!-- jQuery Scrollbar -->
+      <script src="/static/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+      <script src="/static/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+
+      <!-- Moment JS -->
+      <script src="/static/js/plugin/moment/moment.min.js"></script>
+
+      <!-- Chart JS -->
+      <script src="/static/js/plugin/chart.js/chart.min.js"></script>
+
+      <!-- jQuery Sparkline -->
+      <script src="/static/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+
+      <!-- Chart Circle -->
+      <script src="/static/js/plugin/chart-circle/circles.min.js"></script>
+
+      <!-- Datatables -->
+      <script src="/static/js/plugin/datatables/datatables.min.js"></script>
+
+      <!-- Bootstrap Notify -->
+      <script src="/static/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+      <!-- Bootstrap Toggle -->
+      <script src="/static/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+
+      <!-- jQuery Vector Maps -->
+      <script src="/static/js/plugin/jqvmap/jquery.vmap.min.js"></script>
+      <script src="/static/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+
+      <!-- Google Maps Plugin -->
+      <script src="/static/js/plugin/gmaps/gmaps.js"></script>
+
+      <!-- Sweet Alert -->
+      <script src="/static/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+      <!-- Azzara JS -->
+      <script src="/static/js/ready.min.js"></script>
+
+      <!-- Azzara DEMO methods, don't include it in your project! -->
+      <script src="/static/js/setting-demo.js"></script>
+      <script src="/static/js/demo.js"></script>
+
+      <!-- my script-->
     </div>
-    
-    <canvas id="chart" width="600" height="400"></canvas>
-    
+  </div>
 </div>
 
-
-{% endblock %}
-
-{% block script %}
+{% endblock %} {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 <script>
-    var myChart;
-    var material;
-    function getData(data){
+  var myChart;
+  var material;
+  function getData(data) {
+    const xs = [];
+    const ys = [];
 
-        const xs = [];
-        const ys = [];
-        
-        const table=data.split('\n').slice(1);
-        table.forEach(row => {
-            const column = row.split(',');
-            const date = column[0];
-            xs.push(date);
-            const close = column[4];
-            ys.push(close);
-        });
-    return { xs , ys };
+    const table = data.split("\n").slice(1);
+    table.forEach((row) => {
+      const column = row.split(",");
+      const date = column[0];
+      xs.push(date);
+      const close = column[4];
+      ys.push(close);
+    });
+    return { xs, ys };
+  }
+
+  function chartIt(data) {
+    material = getData(data);
+    const ctx = document.getElementById("chart");
+
+    let chartData = {
+      type: "line",
+      data: {
+        labels: material.xs,
+        datasets: [
+          {
+            label: "Closing Rates",
+            data: material.ys,
+            fill: false,
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: false,
+        maintainAspectRatio: false,
+      },
+    };
+
+    if (typeof this.myChart != "undefined") {
+      this.myChart.destroy();
     }
 
-    function chartIt(data){
-        material = getData(data);
-        const ctx = document.getElementById('chart');
-        
-        let chartData = {
-            type: 'line',
-            data: {
-                labels: material.xs,
-                datasets: [{
-                    label: 'Closing Rates',
-                    data: material.ys,
-                    fill: false,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: false,
-                maintainAspectRatio: false
-            }
-        };
+    this.myChart = new Chart(ctx, chartData);
+    this.myChart.update();
+  }
 
-        if (typeof(this.myChart) != "undefined") {
-            this.myChart.destroy();
-        }
+  function submit() {
+    var name = document.getElementById("name");
+    var entry = {
+      name: name.value,
+    };
+    console.log(entry);
+    fetch(`${window.origin}/findCompany`, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(entry),
+      cache: "no-cache",
+      headers: new Headers({
+        "content-type": "application/json",
+      }),
+    }).then(function (response) {
+      if (response.status != 200) {
+        console.log(`error!`);
+        return;
+      }
+      response.text().then(function (data) {
+        const store = data;
+        console.log(store);
+        chartIt(data);
+      });
+    });
+  }
 
-        this.myChart = new Chart(ctx, chartData);
-        this.myChart.update();
-    }
-    
-    function submit(){
-        var name = document.getElementById("name");
-        var entry = {
-            name: name.value
-        }
-        console.log(entry);
-        fetch(`${window.origin}/findCompany`, {
-            method: "POST",
-            credentials: "include",
-            body:JSON.stringify(entry),
-            cache: "no-cache",
-            headers: new Headers({
-                "content-type" : "application/json" 
-            })
-        })
-        .then(function(response){
-            if(response.status != 200){
-                console.log(`error!`);
-                return;
-            }
-            response.text().then(function(data){
-                const store=data;
-                console.log(store);
-                chartIt(data);            
-            })
+  function chart(span) {
+    const s = [];
+    const t = [];
 
-        })
+    for (i = material.xs.length - span - 1; t.length <= span; i++) {
+      s.push(material.xs[i]);
+      t.push(material.ys[i]);
     }
 
-    function chart(span){
-        
-        const s=[];
-        const t=[];
+    const ctx = document.getElementById("chart");
+    ctx.width = 300;
+    ctx.height = 100;
+    let chartData = {
+      type: "line",
+      data: {
+        labels: s,
+        datasets: [
+          {
+            label: "Closing Rates",
+            data: t,
+            fill: false,
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: false,
+        maintainAspectRatio: false,
+      },
+    };
 
-        for(i=material.xs.length-span-1; t.length<=span; i++){
-            s.push(material.xs[i]);
-            t.push(material.ys[i]);
-        }
-
-        const ctx = document.getElementById('chart');
-        ctx.width = 300;
-        ctx.height = 100;
-        let chartData = {
-            type: 'line',
-            data: {
-                labels: s,
-                datasets: [{
-                    label: 'Closing Rates',
-                    data: t,
-                    fill: false,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: false,
-                maintainAspectRatio: false
-            }
-        };
-
-        if (typeof(this.myChart) != "undefined") {
-            this.myChart.destroy();
-        }
-
-        this.myChart = new Chart(ctx, chartData);
-        this.myChart.update();
+    if (typeof this.myChart != "undefined") {
+      this.myChart.destroy();
     }
-    
 
+    this.myChart = new Chart(ctx, chartData);
+    this.myChart.update();
+  }
 </script>
 
 {% endblock %}

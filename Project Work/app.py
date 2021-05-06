@@ -36,6 +36,18 @@ app = Flask(__name__)
 def index():
         return render_template('index.html')
 
+@app.route('/index.html', methods = ['POST','GET'])
+def index2():
+        return render_template('index.html')
+
+@app.route('/blog.html', methods = ['POST','GET'])
+def blog():
+        return render_template('blog.html')
+
+@app.route('/documentation.html', methods = ['POST','GET'])
+def documentation():
+        return render_template('documentation.html')
+
 @app.route('/findCompany', methods = ['POST'])
 def data2():
         req = request.get_json()
