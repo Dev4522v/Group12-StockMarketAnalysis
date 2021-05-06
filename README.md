@@ -1,5 +1,4 @@
 # Group12-StockMarketAnalysis
-# Group12-StockMarketAnalysis
 
 ## Course IT314 - Group project
 
