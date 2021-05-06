@@ -53,7 +53,7 @@ Follow this guide step by step to make a contributon to the project. Don't direc
 
 And then move into your repo by using GitBash.
 
-**`cd 11-tagged-news`**
+**`cd Group12-StockMarketAnalysis`**
 
 3. Set this repo as the remote upstream. This will help further to sync your local repo with the updated version. (Only need to do this step once) Learn more
 
