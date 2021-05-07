@@ -21,8 +21,6 @@ new budding investors and as well as for professionals for doing data analysis q
 
 **`pip install pandas`**
 
-**`pip install datetime`**
-
 **`pip install keras`**
 
 **`pip install tensorflow`**
@@ -38,6 +36,8 @@ new budding investors and as well as for professionals for doing data analysis q
 **`pip install datetime`**
 
 **`pip install dateutil.relativedelta`**
+
+**`pip install pandas_datareader`**
 
 
 
